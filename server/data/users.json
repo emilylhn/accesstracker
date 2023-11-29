@@ -1,0 +1,14 @@
+[
+    {
+      "_id": "610ec54fcf11762acc5e6d55",
+      "username": "john_doe",
+      "email": "john@example.com",
+      "password": "hashedPassword"
+    },
+    {
+      "_id": "610ec54fcf11762acc5e6d56",
+      "username": "jane_smith",
+      "email": "jane@example.com",
+      "password": "hashedPassword"
+    }
+  ]

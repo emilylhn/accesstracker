@@ -1,0 +1,18 @@
+[
+    {
+      "_id": "611ec3d51d8f1329e4be4981",
+      "name": "Central Park",
+      "city": "New York City",
+      "country": "United States",
+      "address": "Central Park, Manhattan, New York, NY 10024, USA",
+      "postalCode": "10024"
+    },
+    {
+      "_id": "611ec3d51d8f1329e4be4982",
+      "name": "L'Olympia",
+      "city": "Montreal",
+      "country": "Canada",
+      "address": "1004 St Catherine St E, Montreal, Quebec H2L 2G2",
+      "postalCode": "H2L 2G2"
+    }
+  ]
