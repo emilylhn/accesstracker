@@ -13,7 +13,7 @@ const findPostById = async (req, res) => {
   try {
     await client.connect();
 
-    const { postId } = req.params; // assuming you receive the post ID in the request parameters
+    const { postId } = req.params; 
     const db = client.db('AccessTracker');
     const postsCollection = db.collection('posts');
 

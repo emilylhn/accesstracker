@@ -1,29 +1,86 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PostsContainer = styled.div`
-  /* Add your styling for the posts container here */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #003227;
 `;
 
 const PostCard = styled.div`
-  /* Styling for individual post cards */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 10px;
+  width: 70%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  background-color: #FFF9EF;
+`;
+
+const PostHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Title = styled.h2`
+  margin-bottom: 5px;
+  font-family: 'Silk Flower', serif;
+`;
+
+const TagsExperience = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding-bottom:10px;
+  padding-top: 10px;
+
+  span {
+    margin-right: 10px;
+    background-color: #577F74;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+
+  }
 `;
 
 const EditButton = styled.button`
-  /* Styling for edit button */
+  margin-right: 10px;
+  background-color: #577F74;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    font-family: 'Silk Flower', serif;
 `;
 
 const DeleteButton = styled.button`
-  /* Styling for delete button */
+    background-color: #577F74;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    font-family: 'Silk Flower', serif;
 `;
 
 const EditLink = styled(Link)`
-  /* Optionally, add any additional styles for Link */
-  /* This Link won't be displayed but used as a wrapper for navigation */
-  /* display: none; */
+  text-decoration: none;
+  color: inherit;
+`;
+
+const PostFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 `;
 
 const ViewPostsByUser = () => {
@@ -67,7 +124,6 @@ const ViewPostsByUser = () => {
       });
 
       if (response.ok) {
-        // Handle successful deletion, e.g., remove the post from the state
         setUserPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
       } else {
         console.error('Failed to delete post');
@@ -77,39 +133,30 @@ const ViewPostsByUser = () => {
     }
   };
 
-//   return (
-//     <PostsContainer>
-//       {userPosts.map((post) => (
-//         <PostCard key={post._id}>
-//           <h2>{post.title}</h2>
-//           <p>{post.content}</p>
-//           {/* Edit Post Link */}
-//           <EditButton to={`/posts/${post._id}/edit`}>Edit</EditButton>
-//           {/* Delete Post Button */}
-//           <DeleteButton onClick={() => handleDelete(post._id)}>Delete</DeleteButton>
-//         </PostCard>
-//       ))}
-//     </PostsContainer>
-//   );
-// };
-
-return (
+  return (
     <PostsContainer>
       {userPosts.map((post) => (
         <PostCard key={post._id}>
-          <h2>{post.title}</h2>
+          <PostHeader>
+            <Title>{post.title}</Title>
+          </PostHeader>
           <p>{post.content}</p>
-          {/* Edit Post Button */}
-          <EditButton>
-            <EditLink to={`/edit/${post._id}`}>Edit</EditLink>
-          </EditButton>
-          {/* Delete Post Button */}
-          <DeleteButton onClick={() => handleDelete(post._id)}>Delete</DeleteButton>
+          <TagsExperience>
+            {post.tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
+          </TagsExperience>
+          <span>You said your experience was {post.experience}.</span>
+         <PostFooter>
+            <EditButton>
+              <EditLink to={`/edit/${post._id}`}>Edit</EditLink>
+            </EditButton>
+            <DeleteButton onClick={() => handleDelete(post._id)}>Delete</DeleteButton>
+          </PostFooter>
         </PostCard>
       ))}
     </PostsContainer>
   );
 };
-
 
 export default ViewPostsByUser;

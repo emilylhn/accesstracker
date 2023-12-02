@@ -3,24 +3,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: #333;
+  background-color: #577F74;
   color: white;
+  padding: 20px;
+  margin: 0;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     li {
       margin: 0 10px;
+      font-family: 'Silk Flower', serif;
+      font-size: 20px;
+      display: inline;
     }
   }
 
   a {
     color: white;
     text-decoration: none;
+  }
+`;
+
+const LogoutLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+
   }
 `;
 
@@ -53,7 +68,9 @@ const Navbar = () => {
               <Link to={myPostsLink}>My Posts</Link>
             </li>
             <li>
-              <button onClick={handleLogoutClick}>Logout</button>
+            <LogoutLink to="/login" onClick={handleLogoutClick}>
+                Logout
+              </LogoutLink>
             </li>
           </>
         ) : (

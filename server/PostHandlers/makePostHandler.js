@@ -16,7 +16,7 @@ const makePost = async (req, res) => {
   try {
     await client.connect();
 
-    console.log(req.body); // Log the entire request body
+    console.log(req.body); 
     console.log(req.params); 
 
     const { locationId, title, content, tags, experience } = req.body;
