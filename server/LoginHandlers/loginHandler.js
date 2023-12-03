@@ -18,7 +18,6 @@ const userLogin = async (req, res) => {
     const db = client.db('AccessTracker');
     const usersCollection = db.collection('users');
     const user = await usersCollection.findOne({ email });
-    console.log('Retrieved User:', user);
 
     if (!user) {
       res.status(404).json({ message: 'User not found' });
@@ -30,10 +29,8 @@ const userLogin = async (req, res) => {
       res.status(401).json({ message: 'Invalid password' });
       return;
     }
-
-    console.log('User Object:', user);
     
-    const token = jwt.sign({ userId: user.userId }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.userId }, JWT_SECRET, { expiresIn: '2h' });
 
     const { password: _, ...userData } = user;
     res.status(200).json({ message: 'Login successful', user: { ...userData, userId: user.userId }, token  });

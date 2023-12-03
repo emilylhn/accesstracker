@@ -106,7 +106,6 @@ const ViewPostsByUser = () => {
 
         if (response.ok) {
           const { posts } = await response.json();
-          // setUserPosts(posts);
           setUserPosts(posts.slice().reverse());
         } else {
           console.error('Failed to fetch user posts');

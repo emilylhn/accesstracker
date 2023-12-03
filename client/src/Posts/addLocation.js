@@ -90,7 +90,7 @@ const AddLocation = () => {
       console.log(data); 
 
       if (response.ok) {
-        navigate('/'); //send me home after added to research and choose my location change this later
+        navigate('/'); 
       }
     } catch (error) {
       console.error('Error:', error);

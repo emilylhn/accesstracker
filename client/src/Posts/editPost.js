@@ -131,9 +131,7 @@ const EditPost = () => {
       });
 
       if (response.ok) {
-        // Redirect to the updated post
         navigate(`/posts/${postId}`);
-        // navigate(`/user/posts`);
       } else {
         console.error('Failed to edit post');
       }

@@ -22,7 +22,7 @@ express()
 .get('/', (req, res) => {
     res
         .status(200)
-        .json({ status: 200, message: "This is the homepage... it's empty :(" });
+        .json({ status: 200, message: "Huh, this should be the home page but there is nothing here." });
     })
 
     .post('/signup', userSignup)
@@ -44,7 +44,7 @@ express()
         .status(404)
         .json({
             status: 404,
-            message: 'This is obviously not the page you are looking for.',
+            message: 'Whoops, this does not seem like what you were looking for.',
         });
 })
 

@@ -121,17 +121,6 @@ const MakePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Location ID:', locationId);
-    console.log('User ID:', userId);
-    // console.log('Token', token)
-
-    console.log('Submitting Post Data:', {
-        title: postData.title,
-        content: postData.content,
-        tags: postData.tags,
-        experience: postData.experience,
-      });
-
     try {
       const response = await fetch(`/locations/${locationId}/posts`, {
         method: 'POST',
@@ -150,7 +139,6 @@ const MakePost = () => {
       });
 
       if (response.ok) {
-        console.log('Post created successfully');
         navigate(`/locations/${locationId}/posts`);
       } else {
         console.error('Failed to create post');

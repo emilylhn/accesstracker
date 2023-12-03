@@ -83,19 +83,11 @@ const Signup = () => {
         body: JSON.stringify({ username, email, password }),
       });
 
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
 
   if (response.ok) {
-    // Navigate back to the login page after successful signup
     navigate('/login');
   } else {
-    const data = await response.json();
-    console.log(data); // Log any response data in case of non-successful signup
+    const data = await response.json(); 
     console.error('Signup failed');
   }
 } catch (error) {

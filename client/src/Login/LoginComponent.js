@@ -85,12 +85,10 @@ const Login = ({ setIsLoggedIn }) => {
 
         const token = data.token;
         localStorage.setItem('token', token);
-        console.log('Token set in localStorage:', token);
 
         const userId = data.user.userId;
         if (userId) {
           localStorage.setItem('userId', userId);
-          console.log('UserID:', userId);
         } else {
           console.log('UserID not found in response');
         }
