@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #003227;
 `;
 
 const Form = styled.form`
@@ -38,6 +40,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-family: 'Silk Flower', serif;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const Title = styled.h1`
@@ -86,6 +89,7 @@ const CheckboxRadioButtonContainer = styled.div`
 const MakePost = () => {
   const { locationId } = useParams();
   const [userId, setUserId] = useState('');
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUserId = async () => {
       const storedUserId = localStorage.getItem('userId');
@@ -147,6 +151,7 @@ const MakePost = () => {
 
       if (response.ok) {
         console.log('Post created successfully');
+        navigate(`/locations/${locationId}/posts`);
       } else {
         console.error('Failed to create post');
       }

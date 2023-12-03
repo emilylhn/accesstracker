@@ -9,6 +9,7 @@ const PostsContainer = styled.div`
   align-items: center;
   background-image: url(${backgroundImage});
   background-size: cover;
+  min-height: 100vh;
   padding: 20px;
 `;
 
@@ -40,15 +41,16 @@ const FilterContainer = styled.div`
   }
 
   button {
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: #577f74;
     color: white;
-    font-size: 16px;
+    font-size: 19px;
     font-family: 'Silk Flower', serif;
     cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
   }
 `;
 
@@ -57,7 +59,7 @@ const PostItem = styled.div`
   padding: 30px;
   border-radius: 8px;
   font-family: Arial, Helvetica, sans-serif;
-  width: 70%;
+  width: 60%;
   background-color: ${({ experience }) =>
     experience === 'positive'
       ? '#C8E6C9'
@@ -68,37 +70,33 @@ const PostItem = styled.div`
       : 'transparent'};
   margin-left: auto;
   margin-right: auto;
+  font-size: 16px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const Title = styled.h3`
-  margin-bottom: 10px;
   font-family: 'Silk Flower', serif;
   font-size: 30px;
+  margin-bottom: 30px;
 `;
 
 const TagsExperience = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
-  padding: 10px 0;
+  margin-top: 20px;
+  padding: 15px 0;
 
   span {
     margin-right: 10px;
-    background-color: #577f74;
-    color: white;
+    background-color: white;
+    color: #003227;
     padding: 10px;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 18px;
+    font-family: 'Silk Flower', serif;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
   }
-`;
-
-const PostsList = styled.div`
-/* list-style-type: none; */
-  /* margin: 0 auto; 
-  width: 70%; 
-  display: inline-block;  
-  text-align: left; 
-  padding: 0;  */
 `;
 
 
@@ -111,18 +109,13 @@ const LocationPosts = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // useEffect(() => {
-  //   // Check if a valid token exists in localStorage to determine if the user is logged in
-  //   const token = localStorage.getItem('token');
-  //   const userLoggedIn = token ? true : false;
-  //   setIsLoggedIn(userLoggedIn);
-  // }, []);
 
   const handleMakePost = () => {
-    if (isLoggedIn) {
-      navigate(`/locations/${locationId}/make-post`);
-    } else {
+    const token = localStorage.getItem('token');
+    if (!token) {
       navigate('/signin-required');
+    } else {
+      navigate(`/locations/${locationId}/make-post`);
     }
   };
 
@@ -173,13 +166,12 @@ const LocationPosts = () => {
           <option value="Size">Size</option>
           <option value="Other">Other</option>
         </select>
-        <button onClick={handleMakePost}>Make a Post</button>
+        <button onClick={handleMakePost}>Make a Post for this Location</button>
       </FilterContainer>
-      <PostsList>
-        {filteredPosts.map((post) => (
+        {filteredPosts.slice().reverse().map((post) => (
           <PostItem key={post._id} experience={post.experience}>
             <Title>{post.title}</Title>
-            <p>Content: {post.content}</p>
+            <p>{post.content}</p>
             <TagsExperience>
               {post.tags.map((tag, index) => (
                 <span key={index}>{tag}</span>
@@ -188,7 +180,6 @@ const LocationPosts = () => {
             <span>This user said their experience was {post.experience}.</span>
           </PostItem>
         ))}
-      </PostsList>
     </PostsContainer>
   );
 };

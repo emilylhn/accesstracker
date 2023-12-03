@@ -12,6 +12,7 @@ import GetPostById from './Posts/getPostByID';
 import ViewPostsByUser from './Posts/viewPostsByUser';
 import EditPost from './Posts/editPost';
 import SignInRequiredPage from './Login/ErrorComponent';
+import About from './Home/About';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,6 +37,7 @@ function App() {
         <Route path="/user/posts" element={<ViewPostsByUser />} />
         <Route path="/edit/:postId" element={<EditPost />} />
         <Route path="/signin-required" element={<SignInRequiredPage />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );

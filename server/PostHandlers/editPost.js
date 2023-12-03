@@ -14,14 +14,14 @@ const editPost = async (req, res) => {
       await client.connect();
   
       const { postId } = req.params;
-      const { content, tags } = req.body;
+      const { content, tags, title, experience } = req.body;
       
       const db = client.db('AccessTracker');
       const postsCollection = db.collection('posts');
   
       const updateResult = await postsCollection.updateOne(
         { _id: new ObjectId(postId) },
-        { $set: { content, tags } }
+        { $set: { content, tags, title, experience } }
       );
   
       if (updateResult.modifiedCount === 0) {

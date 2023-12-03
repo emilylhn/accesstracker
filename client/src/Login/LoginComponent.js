@@ -42,6 +42,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-family: 'Silk Flower', serif;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const Title = styled.h1`

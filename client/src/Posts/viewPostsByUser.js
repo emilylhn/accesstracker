@@ -8,17 +8,19 @@ const PostsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #003227;
+  min-height: 100vh;
 `;
 
 const PostCard = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 30px;
-  margin: 10px;
+  margin: 15px;
   width: 70%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
   background-color: #FFF9EF;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const PostHeader = styled.div`
@@ -31,6 +33,7 @@ const PostHeader = styled.div`
 const Title = styled.h2`
   margin-bottom: 5px;
   font-family: 'Silk Flower', serif;
+  font-size: 36px;
 `;
 
 const TagsExperience = styled.div`
@@ -60,6 +63,7 @@ const EditButton = styled.button`
     font-size: 17px;
     border: none;
     font-family: 'Silk Flower', serif;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const DeleteButton = styled.button`
@@ -70,6 +74,7 @@ const DeleteButton = styled.button`
     font-size: 17px;
     border: none;
     font-family: 'Silk Flower', serif;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const EditLink = styled(Link)`
@@ -101,7 +106,8 @@ const ViewPostsByUser = () => {
 
         if (response.ok) {
           const { posts } = await response.json();
-          setUserPosts(posts);
+          // setUserPosts(posts);
+          setUserPosts(posts.slice().reverse());
         } else {
           console.error('Failed to fetch user posts');
         }
@@ -147,7 +153,7 @@ const ViewPostsByUser = () => {
             ))}
           </TagsExperience>
           <span>You said your experience was {post.experience}.</span>
-         <PostFooter>
+          <PostFooter>
             <EditButton>
               <EditLink to={`/edit/${post._id}`}>Edit</EditLink>
             </EditButton>

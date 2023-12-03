@@ -25,14 +25,15 @@ const ButtonContainer = styled.div`
 `;
 
 const AuthButton = styled(Link)`
-  padding: 10px 20px;
+  padding: 20px 30px;
   border: none;
   border-radius: 5px;
   background-color: #577f74;
   color: white;
-  font-size: 16px;
+  font-size: 35px;
   font-family: 'Silk Flower', serif;
   text-decoration: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const SignInRequiredPage = () => {

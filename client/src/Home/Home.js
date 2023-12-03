@@ -34,8 +34,8 @@ font-size: 50px;
 
 const Description = styled.p`
 font-size: 20px;
-  margin-bottom: 20px;
-  margin-top: 20px; 
+  margin-bottom: 37px;
+  margin-top: 35px; 
   font-family: Arial, Helvetica, sans-serif;
     `;
 
@@ -49,6 +49,7 @@ const AddLocationButton = styled(Link)`
   border-radius: 5px;
   font-family: 'Silk Flower', serif;
   font-size: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 
@@ -56,7 +57,7 @@ const LandingPage = () => {
   return (
     <LandingContainer>
       <Content>
-        <Title>Welcome to the AccessTracker</Title>
+        <Title>Welcome to the Access Tracker</Title>
         <Description>
           Search to view posts for a location or log in to contribute your own experiences!
         </Description>

@@ -20,10 +20,11 @@ const EditPostForm = styled.form`
   padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
   color: black;
+  width: 60%;
 `;
 
 const Input = styled.input`
-  width: 70%;
+  width: 75%;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -32,7 +33,7 @@ const Input = styled.input`
 `;
 
 const Textarea = styled.textarea`
-  width: 70%;
+  width: 75%;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -51,6 +52,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-family: 'Silk Flower', serif;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const EditTitle = styled.h1`
@@ -131,6 +133,7 @@ const EditPost = () => {
       if (response.ok) {
         // Redirect to the updated post
         navigate(`/posts/${postId}`);
+        // navigate(`/user/posts`);
       } else {
         console.error('Failed to edit post');
       }

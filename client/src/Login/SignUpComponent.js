@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import backgroundImage from '../assets/backgroundImage.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const FormContainer = styled.div`
   display: flex;
@@ -21,6 +22,8 @@ const Form = styled.form`
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  width: 50%;
+  text-align: center;
 `;
 
 const Input = styled.input`
@@ -42,6 +45,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-family: 'Silk Flower', serif;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); 
 `;
 
 const Title = styled.h1`
@@ -62,6 +66,7 @@ const Label = styled.label`
 `;
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,18 +83,31 @@ const Signup = () => {
         body: JSON.stringify({ username, email, password }),
       });
 
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
+
+  if (response.ok) {
+    // Navigate back to the login page after successful signup
+    navigate('/login');
+  } else {
+    const data = await response.json();
+    console.log(data); // Log any response data in case of non-successful signup
+    console.error('Signup failed');
+  }
+} catch (error) {
+  console.error('Error:', error);
+}
+};
 
 return (
   <FormContainer>
     <Form onSubmit={handleSignup}>
       <Title>Sign Up</Title>
-      <Description>Sign up to make posts and share your accessibility experiences with the community.</Description>
+      <Description>Sign up to make posts and share your accessibility experiences with the community. If successful you will be redirected to the login page to sign in.</Description>
       <Label htmlFor="username">Username</Label>
       <Input
         type="text"

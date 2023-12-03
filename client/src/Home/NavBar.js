@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: #577F74;
+  background-color: #577f74;
   color: white;
   padding: 20px;
   margin: 0;
+  font-size: 25px;
+  font-family: 'Silk Flower', serif;
 
   ul {
     list-style: none;
@@ -14,18 +16,23 @@ const Nav = styled.nav`
     margin: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
 
-    li {
-      margin: 0 10px;
-      font-family: 'Silk Flower', serif;
-      font-size: 20px;
-      display: inline;
-    }
+  .left-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .right-links {
+    display: flex;
+    align-items: center;
   }
 
   a {
     color: white;
     text-decoration: none;
+    margin: 0 15px;
   }
 `;
 
@@ -33,10 +40,6 @@ const LogoutLink = styled(Link)`
   color: white;
   text-decoration: none;
   cursor: pointer;
-
-  &:hover {
-
-  }
 `;
 
 const Navbar = () => {
@@ -59,30 +62,37 @@ const Navbar = () => {
   return (
     <Nav>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {isLoggedIn ? (
-          <>
-            <li>
-              <Link to={myPostsLink}>My Posts</Link>
-            </li>
-            <li>
-            <LogoutLink to="/login" onClick={handleLogoutClick}>
-                Logout
-              </LogoutLink>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          </>
-        )}
+        <div className="left-links">
+          <li>
+            <Link to="/">Access Tracker</Link>
+          </li>
+        </div>
+        <div className="right-links">
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          {isLoggedIn ? (
+            <>
+              <li>
+                <Link to={myPostsLink}>My Posts</Link>
+              </li>
+              <li>
+                <LogoutLink to="/login" onClick={handleLogoutClick}>
+                  Logout
+                </LogoutLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Signup</Link>
+              </li>
+            </>
+          )}
+        </div>
       </ul>
     </Nav>
   );

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../assets/backgroundImage.jpg';
 
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url(${backgroundImage});
+  background-size: cover;
 `;
 
 const Form = styled.form`
